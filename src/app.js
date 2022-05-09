@@ -1,9 +1,10 @@
 import './style.css'
 import {isValid} from "./utils";
+import {createModal} from "./utils";
 import {Question} from "./question";
 
 const form = document.getElementById('main-form')
-const modalButton = document.getElementById('modal__button')
+const modalButton = document.getElementById('modal-button')
 const formInput = form.querySelector('#main-form__input')
 const formButton = form.querySelector('#main-form__button')
 
@@ -30,10 +31,16 @@ const submitFormHandler = (e) => {
 //
 // }
 
-// modalButton.addEventListener('click', openModal)
+
+
+modalButton.addEventListener('click', openModal)
 window.addEventListener('load', Question.renderList) //призагрузке страницы, рендерим список, который лежит в localStorage, с помощью созданного нами статичного метода renderList
 form.addEventListener('submit', submitFormHandler)
 formInput.addEventListener('input', () => {
     formButton.disabled = !isValid(formInput.value)
 })
 console.log('app working...')
+
+function openModal () {
+    createModal('Авторизация', '<h1>Test</h1>>')
+}
